@@ -8,7 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IRepository, Repository>();
+builder.Services.AddScoped<IBottleRepository, BottleRepository>();
+builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddDbContext<DataContext>();
 
 var app = builder.Build();
@@ -23,5 +24,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.ConfigureBeerEndpoints();
+app.ConfigureStudentEndpoints();
 
 app.Run();

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace workshop.wwwapi.Models
 {
@@ -9,5 +10,11 @@ namespace workshop.wwwapi.Models
         public int Id { get; set; }
         [Column("brand")]
         public string Brand { get; set; }
+        [Column("size")]
+        public int Size { get; set; }
+        [ForeignKey("Student")]
+        public int StudentId { get; set; }
+        public Student Owner { get; set; }
+    
     }
 }

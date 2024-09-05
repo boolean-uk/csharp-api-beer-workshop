@@ -17,6 +17,13 @@ namespace workshop.wwwapi.Data
             optionsBuilder.UseNpgsql(_connectionString);
             optionsBuilder.LogTo(message => Debug.WriteLine(message)); //see the sql EF using in the console
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            Seeder seeder = new Seeder();
+            modelBuilder.Entity<Student>().HasData(seeder.Students);
+
+        }
         public DbSet<Bottle> Bottles { get; set; }
+        public DbSet<Student> Students { get; set; }
     }
 }

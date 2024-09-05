@@ -76,3 +76,12 @@ VALUES
 ('Guinness');
 
 ```
+
+
+## Migrations
+
+Code First migrations:
+
+- In package manager console: ```install-package microsoft.entityframeworkcore.tools```
+- In package manager console: ``` add-migration FirstMigration```
+- In package manager console: ``` update-database ```
