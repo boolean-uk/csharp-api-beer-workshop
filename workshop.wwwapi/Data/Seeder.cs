@@ -78,6 +78,7 @@ namespace workshop.wwwapi.Data
         };
 
         private List<Student> _students = new List<Student>();
+        private List<Bottle> _bottles = new List<Bottle>();
         
 
         public Seeder()
@@ -99,9 +100,13 @@ namespace workshop.wwwapi.Data
             
             }
 
-
+            _bottles.Add(new Bottle() { Id=1, Brand="Heineken", Size=330});
+            _bottles.Add(new Bottle() { Id=2, Brand = "Bud", Size = 330 });
+            _bottles.Add(new Bottle() { Id=3, Brand = "Fosters", Size = 330 });
+            _bottles.Add(new Bottle() { Id=4, Brand = "Doom Bar", Size = 330 });
 
         }
         public List<Student> Students { get { return _students; } }      
+        public List<Bottle> Bottles { get { return _bottles; } }
     }
 }

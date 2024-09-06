@@ -22,7 +22,7 @@ namespace workshop.wwwapi.Repository
 
         public async Task<List<Bottle>> GetBottles()
         {
-            return await _db.Bottles.Include(bottle => bottle.Owner).ToListAsync();
+            return await _db.Bottles.ToListAsync();
         }
 
         public async Task<Bottle> GetById(int id)

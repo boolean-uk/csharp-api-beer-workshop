@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace workshop.wwwapi.Models
 {
@@ -17,6 +18,6 @@ namespace workshop.wwwapi.Models
         [Column("email")]
         public string Email { get; set; }
 
-        public List<Bottle> FavouriteBeers { get;set; } = new List<Bottle>();
+
     }
 }

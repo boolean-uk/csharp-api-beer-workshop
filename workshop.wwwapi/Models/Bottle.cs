@@ -12,9 +12,7 @@ namespace workshop.wwwapi.Models
         public string Brand { get; set; }
         [Column("size")]
         public int Size { get; set; }
-        [ForeignKey("Student")]
-        public int StudentId { get; set; }
-        public Student Owner { get; set; }
+
     
     }
 }

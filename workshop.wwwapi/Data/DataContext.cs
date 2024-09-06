@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Numerics;
 using workshop.wwwapi.Models;
 
 namespace workshop.wwwapi.Data
@@ -19,11 +20,16 @@ namespace workshop.wwwapi.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Fridge>().HasKey(i => new { i.StudentId, i.BottleId });
+            
             Seeder seeder = new Seeder();
             modelBuilder.Entity<Student>().HasData(seeder.Students);
+            modelBuilder.Entity<Bottle>().HasData(seeder.Bottles);
 
         }
         public DbSet<Bottle> Bottles { get; set; }
         public DbSet<Student> Students { get; set; }
+        public DbSet<Fridge> FridgeContents { get; set; }
+
     }
 }

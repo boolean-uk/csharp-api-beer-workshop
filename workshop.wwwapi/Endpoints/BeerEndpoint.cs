@@ -15,6 +15,22 @@ namespace workshop.wwwapi.Endpoints
             bottles.MapGet("/", GetBottles);
             bottles.MapPost("/", AddABottle);
             bottles.MapPut("/{id}", UpdateABottle);
+
+            var fridge = app.MapGroup("fridge");
+            fridge.MapGet("/", GetFridgeContents);
+        }
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public static async Task<IResult> GetFridgeContents(IFridgeRepository repository)
+        {
+            var contents = await repository.GetFridgeContents();
+            List<Object> results = new List<Object>();
+            
+            contents.ForEach(x =>
+            {
+                //results.Add(new { Beer=x.Bottle.Brand, Owner=x.Student.FirstName });
+            });
+            
+            return TypedResults.Ok(contents);
         }
         [ProducesResponseType(StatusCodes.Status200OK)]
         public static async Task<IResult> GetBottles(IBottleRepository repository)
@@ -30,10 +46,7 @@ namespace workshop.wwwapi.Endpoints
                 DTOBottle bottle = new DTOBottle();
                 bottle.Brand = b.Brand;
 
-                DTOStudent student = new DTOStudent();
-                student.Name = b.Owner.FirstName + " " + b.Owner.LastName;
 
-                bottle.Owner = student;
 
                 response.Bottles.Add(bottle);
                 
@@ -48,7 +61,7 @@ namespace workshop.wwwapi.Endpoints
         {
             try
             {
-                var result = await repository.AddBottle(new Bottle() { Brand = model.Brand, Size=model.Size, StudentId=model.StudentId});
+                var result = await repository.AddBottle(new Bottle() { Brand = model.Brand, Size=model.Size });
                 return TypedResults.Ok(result);
             }
             catch (Exception ex)

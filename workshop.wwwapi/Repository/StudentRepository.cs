@@ -17,7 +17,7 @@ namespace workshop.wwwapi.Repository
         }
         public async Task<List<Student>> GetStudents()
         {
-            return await _db.Students.Include(s => s.FavouriteBeers).ToListAsync();
+            return await _db.Students.ToListAsync();
         }
     }
 }
